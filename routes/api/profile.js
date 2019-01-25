@@ -51,7 +51,7 @@ router.get('/all', (req, res) => {
             res.json(profiles)
 
         })
-
+        .catch(err => res.status(404).json({ profile: 'Theres are no profiles' }));
 });
 
 //  @route  GET api/profile/handle/:handle
