@@ -101,7 +101,7 @@ router.get('/user/:user_id', (req, res) => {
 });
 
 
-//  @route  POST api/peodile
+//  @route  POST api/profile
 //  @desc   POST Create or edit user profile
 //  @access Private
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -194,6 +194,41 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
 
             //  Add to exp array
             profile.experience.unshift(newExp);
+
+            profile.save().then(profile => res.json(profile));
+        })
+
+});
+
+
+//  @route  POST api/profile/education
+//  @desc   POST  Add education to profile
+//  @access Private
+router.post('/education', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    const { errors, isValid } = validateEducationInput(req.body);
+
+    //  Check validation
+    if (!isValid) {
+        //  Return any errors with 400 status
+        return res.status(400).json(errors);
+    }
+
+
+    Profile.findOne({ user: req.user.id })
+        .then(profile => {
+            const newExp = {
+                title: req.body.title,
+                school: req.body.school,
+                location: req.body.location,
+                from: req.body.from,
+                to: req.body.to,
+                current: req.body.current,
+                description: req.body.description
+            }
+
+            //  Add to exp array
+            profile.education.unshift(newExp);
 
             profile.save().then(profile => res.json(profile));
         })
