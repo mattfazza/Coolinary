@@ -22,7 +22,7 @@ module.exports = function validateProfileInput(data) {
     }
 
     if (Validator.isEmpty(data.status)) {
-        errors.skills = 'Skills field is required';
+        errors.status = 'Status field is required';
     }
 
     if (Validator.isEmpty(data.skills)) {
