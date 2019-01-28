@@ -6,6 +6,7 @@ const passport = require('passport');
 //  Load Validation
 const validateProfileInput = require('../../validation/profile');
 const validateExperienceInput = require('../../validation/experience');
+const validateEducationInput = require('../../validation/education');
 
 //  Load Profile Model and User model
 const Profile = require('../../models/Profile');
@@ -217,10 +218,10 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
 
     Profile.findOne({ user: req.user.id })
         .then(profile => {
-            const newExp = {
-                title: req.body.title,
+            const newEd = {
                 school: req.body.school,
-                location: req.body.location,
+                degree: req.body.degree,
+                fieldofstudy: req.body.fieldofstudy,
                 from: req.body.from,
                 to: req.body.to,
                 current: req.body.current,
@@ -228,7 +229,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
             }
 
             //  Add to exp array
-            profile.education.unshift(newExp);
+            profile.education.unshift(newEd);
 
             profile.save().then(profile => res.json(profile));
         })
