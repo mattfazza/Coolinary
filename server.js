@@ -13,10 +13,12 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//DB Config
+//DB Config - The config file contains a URI
 const db = require('./config/keys').mongoURI;
 
 //connect to MongoDB
+//This approach is slightly different from Pymongo.  It's important to notice that mongoose allows you to
+//log the error here
 mongoose
     .connect(db)
     .then(() => console.log('MongDB Connected'))
