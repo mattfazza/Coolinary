@@ -55,7 +55,6 @@ router.post('/register', (req, res) => {
                     password: req.body.password
                 });
 
-
                 //we're are providin a user, an email, and a password and that user is sent back to us in the response
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -74,7 +73,6 @@ router.post('/register', (req, res) => {
 // @desc    Login User / Returning JWT Token
 // @access Public
 router.post('/login', (req, res) => {
-
 
     //req.body has everything that's in this route
     const { errors, isValid } = validateLoginInput(req.body);
