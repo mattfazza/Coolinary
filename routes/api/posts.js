@@ -48,7 +48,7 @@ router.get('/', (req, res) => {
     Posts.find()
     .sort({date: -1})
     .then(post => res.json(post))
-    .catch(err => res.status(404))
+    .catch(err => res.status(404).json({ nopostfound: 'No post found with that id'}))
 });
 
 // @route GET api/posts/id
@@ -57,7 +57,7 @@ router.get('/', (req, res) => {
 router.get('/id', (req, res) => {
     Posts.findById(req.params.id)
     .then(post => res.json(post))
-    .catch(err => res.status(404))
+    .catch(err => res.status(404).json({ nopostfound: 'No post found with that id'}))
 });
 
 module.exports = router;
