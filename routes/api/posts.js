@@ -123,14 +123,14 @@ router.post(
           .then(post => {
             if (
               post.likes.filter(like => like.user.toString() === req.user.id)
-                .length === 0
+                .length === 0 //if it equals 0 it's not there
             ) {
               return res
                 .status(400)
                 .json({ notliked: 'You have not yet liked this post' });
             }
   
-            // Get remove index
+            // Get remove index so we know which one to remove
             const removeIndex = post.likes
               .map(item => item.user.toString())
               .indexOf(req.user.id);
