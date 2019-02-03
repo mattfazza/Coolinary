@@ -6,7 +6,7 @@ const passport = require('passport');
 //  Post model
 const Post = require('../../models/Post');
 
-//  Validation
+//  Bringing in Validation
 const validatePostInput = require('../../validation/post');
 
 //since we've already defined use in the server, we can just use /test as an endpoint
