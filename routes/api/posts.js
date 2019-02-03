@@ -5,8 +5,10 @@ const passport = require('passport');
 
 //  Post model
 const Post = require('../../models/Post');
+//  Profile model
+const Profile = require('../../models/Profile');
 
-//  Bringing in Validation
+//  Brin.ging in Validation
 const validatePostInput = require('../../validation/post');
 
 //since we've already defined use in the server, we can just use /test as an endpoint
@@ -51,13 +53,33 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nopostfound: 'No post found with that id'}))
 });
 
-// @route GET api/posts/id
+// @route GET api/posts/:id
 // @desc GET specific post
 // @access Public
-router.get('/id', (req, res) => {
+router.get('/:id', (req, res) => {
     Posts.findById(req.params.id)
     .then(post => res.json(post))
     .catch(err => res.status(404).json({ nopostfound: 'No post found with that id'}))
+});
+
+//  @route DELETE api/posts:id
+//  @desc Delete post
+//  @access Private
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Profile.findOne({ user: req.user.id })
+    .then(profile => {
+        Post.findById(req.params.id)
+        .then(post => {
+            //  Check for post owner
+            if(post.user.toString() !== req.user.id){
+                return res.status(401).json({ notauthorized: 'User not authorized'});
+            }
+
+            //  Delete
+            post.remove().then( () => res.json( { success: true } ));
+        })
+        .catch(err => res.status(404).json({ postnotfound: 'No post found '}));
+    })   
 });
 
 module.exports = router;
