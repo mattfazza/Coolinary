@@ -41,4 +41,23 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     newPost.save().then( Post => res.json(post));
 });
 
+// @route GET api/posts
+// @desc GET posts route
+// @access Public
+router.get('/', (req, res) => {
+    Posts.find()
+    .sort({date: -1})
+    .then(post => res.json(post))
+    .catch(err => res.status(404))
+});
+
+// @route GET api/posts/id
+// @desc GET specific post
+// @access Public
+router.get('/id', (req, res) => {
+    Posts.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch(err => res.status(404))
+});
+
 module.exports = router;
