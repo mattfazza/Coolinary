@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 //  Post model
-const Post = require('../../models/Post');
+const Post = require('../../models/Posts');
 //  Profile model
 const Profile = require('../../models/Profile');
 
