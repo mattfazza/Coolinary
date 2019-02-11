@@ -6,6 +6,8 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 
 import './App.css';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 
 class App extends Component {
 
@@ -16,6 +18,10 @@ class App extends Component {
           <h1>My React App</h1>
           <Navbar />
           <Route exact path="/" component={ Landing } />
+          <div className="container">
+            <Route exact path="/register" component = { Register } />
+            <Route exact path="/login" component = { Login } />
+          </div>
           <Footer />
       </div>
       </Router>
