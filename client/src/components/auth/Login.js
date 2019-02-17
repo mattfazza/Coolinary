@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+//to do: this component is simple enough you could attempt to use hooks in them
 class Login extends Component {
   constructor() {
     super();
