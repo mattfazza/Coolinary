@@ -55,7 +55,7 @@ class Register extends Component {
                   <input
                     type="text"
                     className={classnames('form-control form-control-lg', {
-                      //we want the className is-invalid only if we get an error
+                      //we want the className is-invalid only if we get an errornpm i redux
                       'is-invalid': errors.name
                     })}
                     placeholder="Name"
