@@ -9,9 +9,7 @@ import Landing from './components/layout/Landing';
 import './App.css';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import { createStore, applyMiddleware } from 'redux';
-
-const store = createStore(() => [], {}, applyMiddleware());
+import store from './store';
 
 class App extends Component {
 
