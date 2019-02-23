@@ -1,0 +1,4 @@
+1 - Registration and the Error reducer
+2 - Redux Login Action
+3 - Login form
+4 - Logout & Conditional Navbar Links
