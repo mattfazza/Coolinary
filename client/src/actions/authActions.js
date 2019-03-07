@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { TEST_DISPATCH } from './types';
 
 //  Register User
