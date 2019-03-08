@@ -7,6 +7,8 @@ const initialState = {
     user: {}
 };
 
+//in the course Brad Explained the ...
+//it is called spread syntax 
 export default function (state = initialState, action) {
     switch (action.type) {
         case SET_CURRENT_USER:
